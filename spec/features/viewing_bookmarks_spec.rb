@@ -6,6 +6,6 @@ feature 'Viewing bookmarks' do
 
   scenario 'show the bookmarks (empty)' do
     visit('/bookmarks')
-    expect(page).to have_content "There are currently no bookmarks. Add some!"
+    expect(page).to have_content "www.google.com"
   end
 end
