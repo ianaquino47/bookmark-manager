@@ -1,5 +1,3 @@
-require 'pg'
-
 feature 'Viewing bookmarks' do
   scenario 'visiting the index page' do
     visit('/')
@@ -69,5 +67,15 @@ feature 'Viewing bookmarks' do
       expect(page).not_to have_link('Makers Academy', href: 'http://www.makersacademy.com')
       expect(page).to have_link('Snakers Academy', href: 'http://www.snakersacademy.com')
     end
+  end
+
+  scenario 'The bookmark must be a valid URL' do
+    visit('/bookmarks/new')
+    fill_in('title', with: 'not a real bookmark')
+    fill_in('url', with: 'not a real bookmark')
+    click_button('Submit')
+
+     expect(page).not_to have_content "not a real bookmark"
+    expect(page).to have_content "You must submit a valid URL."
   end
 end
